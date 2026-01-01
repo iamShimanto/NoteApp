@@ -1,25 +1,22 @@
 import "dotenv/config";
-import express, {
-  type NextFunction,
-  type Request,
-  type Response,
-} from "express";
+import express from "express";
 const app = express();
 import routes from "./routes/index.ts";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import env from "./utils/validEnv.ts";
+
+app.use(express.json());
+app.use(morgan("dev"));
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: env.CLIENT_URL,
+    credentials: true,
+  })
+);
 
 app.use(routes);
-
-app.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json({ message: "Endpoint not found" });
-  next();
-});
-
-app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
-  console.log(error);
-  let errorMessage = "Internal server error";
-  if (error instanceof Error) errorMessage = error.message;
-  res.status(500).json({ message: errorMessage });
-  next();
-});
 
 export default app;
