@@ -1,4 +1,4 @@
-import type { payload } from "../../utils/token.ts"
+import type { payload } from "../../utils/token.ts";
 
 declare global {
   namespace Express {

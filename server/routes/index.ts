@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 });
 
 router.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json({ message: "Endpoint not found" });
+  res.status(404).send({ message: "Endpoint not found" });
   next();
 });
 
@@ -25,7 +25,7 @@ router.use(
     console.log(error);
     let errorMessage = "Internal server error";
     if (error instanceof Error) errorMessage = error.message;
-    res.status(500).json({ message: errorMessage });
+    res.status(500).send({ message: errorMessage });
     next();
   }
 );

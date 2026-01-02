@@ -2,7 +2,7 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./src",
+    // "rootDir": "./",
     "outDir": "./dist",
 
     "typeRoots": ["./types", "./node_modules/@types"],
@@ -11,6 +11,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
     "allowImportingTsExtensions": true,
+    "moduleResolution": "nodenext",
     "target": "esnext",
     "noEmit": true,
     "types": [],
