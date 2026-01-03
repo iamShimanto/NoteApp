@@ -73,3 +73,22 @@ export const updateNote: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
+export const deleteNote: RequestHandler = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (id && !Types.ObjectId.isValid(id)) {
+      return res.status(400).send({ message: "Invalid Note Id" });
+    }
+
+    const deleteNote = await NoteModel.findByIdAndDelete(id);
+
+    if (!deleteNote) {
+      return res.status(400).send({ messge: "Failed to delete note" });
+    }
+
+    res.status(200).send({ message: "Note deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
