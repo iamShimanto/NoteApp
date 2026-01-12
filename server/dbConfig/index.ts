@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import port from "../utils/validEnv.ts";
+import port from "../utils/validEnv";
 
 const dbConfig = async () => {
   await mongoose

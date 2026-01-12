@@ -1,5 +1,5 @@
 import jwt, { type JwtPayload } from "jsonwebtoken";
-import env from "./validEnv.ts";
+import env from "./validEnv";
 import type { Types } from "mongoose";
 
 interface payload {

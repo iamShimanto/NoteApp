@@ -1,11 +1,11 @@
 import "dotenv/config";
 import express from "express";
 const app = express();
-import routes from "./routes/index.ts";
+import routes from "./routes/index";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import env from "./utils/validEnv.ts";
+import env from "./utils/validEnv";
 
 app.use(express.json());
 app.use(morgan("dev"));

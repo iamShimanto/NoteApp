@@ -1,7 +1,7 @@
-import app from "./app.ts";
+import app from "./app";
 
-import env from "./utils/validEnv.ts";
-import dbConfig from "./dbConfig/index.ts";
+import env from "./utils/validEnv";
+import dbConfig from "./dbConfig/index";
 
 const port = env.PORT;
 

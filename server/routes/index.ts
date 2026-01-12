@@ -5,8 +5,8 @@ import {
   type Response,
 } from "express";
 const router = Router();
-import noteRoutes from "./notes.route.ts";
-import authRoutes from "./auth.route.ts";
+import noteRoutes from "./notes.route";
+import authRoutes from "./auth.route";
 
 router.use("/api/auth", authRoutes);
 router.use("/api/notes", noteRoutes);

@@ -4,10 +4,12 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
+      <Toaster position="top-center" />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>

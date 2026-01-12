@@ -1,7 +1,7 @@
 import type { RequestHandler } from "express";
-import { isValidEmail } from "../utils/validator.ts";
-import UserModel from "../models/auth.schema.ts";
-import { generateToken } from "../utils/token.ts";
+import { isValidEmail } from "../utils/validator";
+import UserModel from "../models/auth.schema";
+import { generateToken } from "../utils/token";
 
 export const userRegister: RequestHandler = async (req, res, next) => {
   try {

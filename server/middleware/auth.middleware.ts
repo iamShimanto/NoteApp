@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import { verifyToken } from "../utils/token.ts";
+import { verifyToken } from "../utils/token";
 
 export const authMiddleware: RequestHandler = (req, res, next) => {
   try {

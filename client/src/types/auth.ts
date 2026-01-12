@@ -18,5 +18,5 @@ export type RegisterPayload = {
 export type AuthResponse = {
   message?: string;
   user?: User;
-  token?: string; // keep if your backend returns token
+  token?: string;
 };

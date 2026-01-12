@@ -1,29 +1,37 @@
 import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
+import { authServices } from "../api/auth.services";
+import toast from "react-hot-toast";
+import axios from "axios";
+import type { RegisterPayload } from "../types/auth";
 
-type Inputs = {
-  fullName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
-// type RegisterInputs = {
-//   fullName: string;
-//   email: string;
-//   password: string;
-//   confirmPassword: string;
-// };
 export default function Register() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<RegisterPayload>();
+  const router = useNavigate();
 
-  const onSubmit = (data : Inputs) => console.log(data);
+  const onSubmit = async (data: RegisterPayload) => {
+    try {
+      const res = await authServices.register(data);
+      if (res.message) {
+        toast.success(res?.message);
+      }
+      setTimeout(() => {
+        router("/login");
+      }, 1000);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message);
+      } else {
+        toast.error("An unexpected error occurred");
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-linear-to-b from-slate-950 via-slate-950 to-black flex items-center justify-center px-4">

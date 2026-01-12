@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import NoteModel from "../models/note.schema.ts";
+import NoteModel from "../models/note.schema";
 import { Types } from "mongoose";
 
 export const getNotes: RequestHandler = async (req, res, next) => {
