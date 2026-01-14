@@ -73,7 +73,11 @@ export const getUserProfile: RequestHandler = async (req, res, next) => {
 
     res
       .status(200)
-      .send({ message: "User Profile Fetched Successfully", user });
+      .send({ message: "User Profile Fetched Successfully", user:{
+        id: user._id,
+        fullName: user.fullName,
+        email: user.email
+      } });
   } catch (error) {
     next(error);
   }

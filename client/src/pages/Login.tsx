@@ -1,8 +1,11 @@
 import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import type { LoginPayload } from "../types/auth";
 import { useForm } from "react-hook-form";
+import { authServices } from "../api/auth.services";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function Login() {
    const {
@@ -10,8 +13,24 @@ export default function Login() {
      handleSubmit,
      formState: { errors },
    } = useForm<LoginPayload>();
+   const router = useNavigate()
 
-   const onSubmit = (data : LoginPayload) => console.log(data);
+   const onSubmit = async (data : LoginPayload) => {
+    try {
+      const res = await authServices.login(data)
+      if(res.message){
+        toast.success(res?.message)
+      }
+      setTimeout(() => {
+        router("/")
+      }, 1000);
+    } catch (error) {
+      console.log(error)
+      if(axios.isAxiosError(error)){
+        toast.error(error?.response?.data?.message)
+      }
+    }
+   };
 
 
   return (

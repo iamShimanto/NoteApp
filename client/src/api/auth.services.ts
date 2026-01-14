@@ -14,4 +14,8 @@ export const authServices = {
     const res = await api.post("/api/auth/register", payload);
     return res.data;
   },
+  profile: async () : Promise<AuthResponse> => {
+    const res = await api.get("/api/auth/getprofile")
+    return res.data
+  }
 };
