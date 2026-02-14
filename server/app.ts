@@ -24,10 +24,9 @@ if (process.env.NODE_ENV === "production") {
   const clientDistPath = path.resolve(__dirname, "..", "..", "client", "dist");
   app.use(express.static(clientDistPath));
 
-  app.get("*", (req, res) => {
-    if (req.path.startsWith("/api/")) {
-      return res.status(404).send({ message: "Endpoint not found" });
-    }
+  // Express v5 (path-to-regexp) no longer supports app.get("*")
+  // Serve SPA routes for all non-API paths.
+  app.get(/^\/(?!api(\/|$)).*/, (req, res) => {
     return res.sendFile(path.join(clientDistPath, "index.html"));
   });
 }

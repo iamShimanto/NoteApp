@@ -17,8 +17,7 @@ router.get("/", (req, res) => {
 
 router.use((req: Request, res: Response, next: NextFunction) => {
   if (!req.path.startsWith("/api/")) return next();
-  res.status(404).send({ message: "Endpoint not found" });
-  next();
+  return res.status(404).send({ message: "Endpoint not found" });
 });
 
 router.use(
