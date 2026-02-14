@@ -19,10 +19,10 @@ const sizeMap: Record<Size, string> = {
 
 const variantMap: Record<Variant, string> = {
   primary:
-    "bg-gradient-to-r from-violet-500 to-cyan-400 text-slate-950 shadow-lg shadow-violet-500/20 hover:brightness-110",
+    "bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 hover:bg-amber-400",
   secondary:
-    "border border-white/10 bg-white/5 text-white/90 hover:bg-white/10",
-  ghost: "text-white/80 hover:bg-white/10",
+    "border border-white/10 bg-slate-950/40 text-white/90 hover:bg-slate-950/60",
+  ghost: "text-white/80 hover:bg-slate-950/40",
   danger:
     "bg-rose-500 text-white shadow-lg shadow-rose-500/20 hover:bg-rose-400",
 };
@@ -50,7 +50,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       type = "button",
       ...props
     },
-    ref
+    ref,
   ) => {
     const isDisabled = disabled || isLoading;
 
@@ -61,7 +61,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isDisabled}
         className={[
           "inline-flex w-full items-center justify-center gap-2 font-semibold transition cursor-pointer",
-          "focus:outline-none focus:ring-4 focus:ring-violet-500/15",
+          "focus:outline-none focus:ring-4 focus:ring-white/10",
           "disabled:cursor-not-allowed disabled:opacity-60",
           "select-none",
           sizeMap[size],
@@ -75,7 +75,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {rightIcon ? <span>{rightIcon}</span> : null}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

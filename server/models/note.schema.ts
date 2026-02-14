@@ -4,6 +4,14 @@ const noteSchema = new Schema(
   {
     title: { type: String, required: true },
     text: { type: String },
+    tags: {
+      type: [String],
+      default: [],
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
     user: {
       type: Schema.ObjectId,
       ref: "User",
@@ -11,7 +19,7 @@ const noteSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 type Note = InferSchemaType<typeof noteSchema>;

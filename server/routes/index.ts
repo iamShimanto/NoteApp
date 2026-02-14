@@ -16,6 +16,7 @@ router.get("/", (req, res) => {
 });
 
 router.use((req: Request, res: Response, next: NextFunction) => {
+  if (!req.path.startsWith("/api/")) return next();
   res.status(404).send({ message: "Endpoint not found" });
   next();
 });
@@ -27,7 +28,7 @@ router.use(
     if (error instanceof Error) errorMessage = error.message;
     res.status(500).send({ message: errorMessage });
     next();
-  }
+  },
 );
 
 export default router;

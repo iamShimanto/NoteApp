@@ -1,14 +1,18 @@
 import type { RequestHandler } from "express";
-import { verifyToken } from "../utils/token";
+import { verifyAccessToken } from "../utils/token";
 
 export const authMiddleware: RequestHandler = (req, res, next) => {
   try {
-    const token: string = req.cookies.token;
-    const decoded = verifyToken(token);
+    const token = req.cookies?.access_token;
+    if (!token || typeof token !== "string") {
+      return res.status(401).send({ message: "Unauthorized" });
+    }
+
+    const decoded = verifyAccessToken(token);
 
     req.user = decoded;
     next();
   } catch (error) {
-    next(error);
+    return res.status(401).send({ message: "Unauthorized" });
   }
 };
